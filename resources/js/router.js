@@ -6,6 +6,7 @@ import Hello from "./components/Hello.vue";
 import UsersIndex from './components/UsersIndex';
 import NotFound from './components/NotFound';
 import EptyRouterView from './components/EptyRouterView';
+import DialogOne from  './components/DialogOne';
 
 Vue.use(Router);
 
@@ -14,17 +15,27 @@ export default new Router({
   routes: [
       {
             path: '/',
-            component: EptyRouterView,
-            children: [{
-                path: '',
-                name: 'home',
-                component: Home
-            }]
+            name: 'home',
+            component: Home
       },
       {
-            path: '/hello',
-            name: 'hello',
-            component: Hello,
+            path: '/nested',
+            component: EptyRouterView,
+            children: [{
+                path: 'hello',
+                name: 'nested.hello',
+                component: Hello
+            },{
+                path: 'dialog',
+                name: 'nested.dialog',
+                components: {
+                    default: Hello,
+                    dialog: DialogOne
+                },
+                meta: {
+                    showhtmodal: false
+                }
+            }]
       },
 	  {
 		  path: "/howto",
