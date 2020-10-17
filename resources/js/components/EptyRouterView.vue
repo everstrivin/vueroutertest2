@@ -10,14 +10,11 @@
         name: 'EmptyRouterView',
         data () {
             return {
-                isModalVisible: false,
+                
             }
         },
         watch: {
-            "$route.meta"({ isModalVisible }) {
-                this.isModalVisible = true;
-                //console.log("Actually here "+this.isModalVisible);
-            }
-        },
+            
+        }
     }
 </script>

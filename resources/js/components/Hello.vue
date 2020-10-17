@@ -1,7 +1,8 @@
 <template>
 	<div class="card">
         <p>Hello World!</p>
-		<router-link :to="{ name: 'nested.dialog' }" class="btn">Open Dialog</router-link>
+		<router-link :to="{ name: 'dialog' }" class="btn">Open Dialog</router-link>
+		<router-view></router-view>
 	</div>
 </template>
 
@@ -10,7 +11,6 @@
 </style>
 
 <script>
-	import EventBus from '../eventBus';
 	export default {
 		props: [],
 		data () {
@@ -24,11 +24,14 @@
 		watch: {
 			
 		},
+		created () {
+			
+		},
         mounted() {
 			//This EventBus comes from TourModal.vue
-			EventBus.$on('closemodal', () => {
-				//this.modopen = 0;
-				$('#touristmodal').modal('hide');
+			$('#touristmodal').modal('hide');
+			$(window).on('popstate', function() {
+				$(".modal-backdrop").remove();
 			});
         }
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade hide" id="touristmodal" tabindex="-2" role="dialog" aria-labelledby="touristModalLabel" aria-hidden="true" @click="closeme" style="display: none;">
+    <div class="modal fade preview-modal" id="touristmodal" tabindex="-2" role="dialog" aria-labelledby="touristModalLabel" aria-hidden="true" @click="closeme" style="display: none;">
       <div class="modal-dialog modal-dialog-centered" style="height:1%;max-width: 90%;overflow: hidden;margin: 0 auto;" role="dialog" @click.stop>
         <div class="modal-content" style="height:90%">
 
@@ -29,26 +29,11 @@ export default {
 			}
   },
   created() {
-    const unregisterRouterGuard = this.$router.beforeEach((to, from, next) => {
-      EventBus.$emit('closemodal');
-      this.back();
-      next(false);
-    });
-
-    this.$once('hook:destroyed', () => {
-      unregisterRouterGuard();
-    });
-
-    console.log("dialog created");
+    
   },
   methods: {
     closeme: function() {
       this.$router.back();
-      //This EventBus goes to app.js
-      EventBus.$emit('closemodal');
-      //this.$router.beforeEach((to, from, next) => {
-      //  next(false);
-      //});
     },
     back() {
       this.$router.back();
@@ -57,7 +42,6 @@ export default {
   mounted() {
     $('#touristmodal').modal('show');
     //$('#touristmodal').show();
-    console.log("should be ounted");
   }
 }
 </script>

@@ -4,7 +4,7 @@
 
         <p>
             <router-link :to="{ name: 'home' }">Home</router-link> |
-            <router-link :to="{ name: 'nested.hello' }">Hello World</router-link> |
+            <router-link :to="{ name: 'hello' }">Hello World</router-link> |
             <router-link :to="{ name: 'howto' }">Exaple Coponent</router-link> |
             <router-link :to="{ name: 'users.index' }">Users Coponent</router-link>
         </p>

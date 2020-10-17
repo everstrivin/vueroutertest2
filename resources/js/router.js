@@ -19,22 +19,13 @@ export default new Router({
             component: Home
       },
       {
-            path: '/nested',
-            component: EptyRouterView,
+            path: '/hello',
+            name: 'hello',
+            component: Hello,
             children: [{
-                path: 'hello',
-                name: 'nested.hello',
-                component: Hello
-            },{
                 path: 'dialog',
-                name: 'nested.dialog',
-                components: {
-                    default: Hello,
-                    dialog: DialogOne
-                },
-                meta: {
-                    showhtmodal: false
-                }
+                name: 'dialog',
+                component: DialogOne
             }]
       },
 	  {

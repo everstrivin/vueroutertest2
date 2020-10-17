@@ -1973,28 +1973,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  created: function created() {
-    var _this = this;
-
-    var unregisterRouterGuard = this.$router.beforeEach(function (to, from, next) {
-      _eventBus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('closemodal');
-
-      _this.back();
-
-      next(false);
-    });
-    this.$once('hook:destroyed', function () {
-      unregisterRouterGuard();
-    });
-    console.log("dialog created");
-  },
+  created: function created() {},
   methods: {
     closeme: function closeme() {
-      this.$router.back(); //This EventBus goes to app.js
-
-      _eventBus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('closemodal'); //this.$router.beforeEach((to, from, next) => {
-      //  next(false);
-      //});
+      this.$router.back();
     },
     back: function back() {
       this.$router.back();
@@ -2002,8 +1984,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     $('#touristmodal').modal('show'); //$('#touristmodal').show();
-
-    console.log("should be ounted");
   }
 });
 
@@ -2028,16 +2008,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'EmptyRouterView',
   data: function data() {
-    return {
-      isModalVisible: false
-    };
+    return {};
   },
-  watch: {
-    "$route.meta": function $routeMeta(_ref) {
-      var isModalVisible = _ref.isModalVisible;
-      this.isModalVisible = true; //console.log("Actually here "+this.isModalVisible);
-    }
-  }
+  watch: {}
 });
 
 /***/ }),
@@ -2082,7 +2055,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _eventBus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../eventBus */ "./resources/js/eventBus.js");
 //
 //
 //
@@ -2094,7 +2066,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [],
   data: function data() {
@@ -2102,11 +2074,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {},
   watch: {},
+  created: function created() {},
   mounted: function mounted() {
     //This EventBus comes from TourModal.vue
-    _eventBus__WEBPACK_IMPORTED_MODULE_0__["default"].$on('closemodal', function () {
-      //this.modopen = 0;
-      $('#touristmodal').modal('hide');
+    $('#touristmodal').modal('hide');
+    $(window).on('popstate', function () {
+      $(".modal-backdrop").remove();
     });
   }
 });
@@ -6759,7 +6732,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*.modal-backdrop {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.3);\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n  }\r\n\r\n  .modal {\r\n    background: #FFFFFF;\r\n    box-shadow: 2px 2px 20px 1px;\r\n    overflow-x: auto;\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n\r\n  .modal-header,\r\n  .modal-footer {\r\n    padding: 15px;\r\n    display: flex;\r\n  }\r\n\r\n  .modal-header {\r\n    border-bottom: 1px solid #eeeeee;\r\n    color: #4AAE9B;\r\n    justify-content: space-between;\r\n  }\r\n\r\n  .modal-footer {\r\n    border-top: 1px solid #eeeeee;\r\n    justify-content: flex-end;\r\n  }\r\n\r\n  .modal-body {\r\n    position: relative;\r\n    padding: 20px 10px;\r\n  }\r\n\r\n  .btn-close {\r\n    border: none;\r\n    font-size: 20px;\r\n    padding: 20px;\r\n    cursor: pointer;\r\n    font-weight: bold;\r\n    color: #4AAE9B;\r\n    background: transparent;\r\n  }\r\n\r\n  .btn-green {\r\n    color: white;\r\n    background: #4AAE9B;\r\n    border: 1px solid #4AAE9B;\r\n    border-radius: 2px;\r\n  }*/\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*.modal-backdrop {\r\n    position: fixed;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    right: 0;\r\n    background-color: rgba(0, 0, 0, 0.3);\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n  }\r\n\r\n  .modal {\r\n    background: #FFFFFF;\r\n    box-shadow: 2px 2px 20px 1px;\r\n    overflow-x: auto;\r\n    display: flex;\r\n    flex-direction: column;\r\n  }\r\n\r\n  .modal-header,\r\n  .modal-footer {\r\n    padding: 15px;\r\n    display: flex;\r\n  }\r\n\r\n  .modal-header {\r\n    border-bottom: 1px solid #eeeeee;\r\n    color: #4AAE9B;\r\n    justify-content: space-between;\r\n  }\r\n\r\n  .modal-footer {\r\n    border-top: 1px solid #eeeeee;\r\n    justify-content: flex-end;\r\n  }\r\n\r\n  .modal-body {\r\n    position: relative;\r\n    padding: 20px 10px;\r\n  }\r\n\r\n  .btn-close {\r\n    border: none;\r\n    font-size: 20px;\r\n    padding: 20px;\r\n    cursor: pointer;\r\n    font-weight: bold;\r\n    color: #4AAE9B;\r\n    background: transparent;\r\n  }\r\n\r\n  .btn-green {\r\n    color: white;\r\n    background: #4AAE9B;\r\n    border: 1px solid #4AAE9B;\r\n    border-radius: 2px;\r\n  }*/\r\n", ""]);
 
 // exports
 
@@ -38564,7 +38537,7 @@ var render = function() {
           _vm._v("Home")
         ]),
         _vm._v(" |\n        "),
-        _c("router-link", { attrs: { to: { name: "nested.hello" } } }, [
+        _c("router-link", { attrs: { to: { name: "hello" } } }, [
           _vm._v("Hello World")
         ]),
         _vm._v(" |\n        "),
@@ -38607,7 +38580,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "modal fade hide",
+      staticClass: "modal fade preview-modal",
       staticStyle: { display: "none" },
       attrs: {
         id: "touristmodal",
@@ -38777,9 +38750,11 @@ var render = function() {
       _vm._v(" "),
       _c(
         "router-link",
-        { staticClass: "btn", attrs: { to: { name: "nested.dialog" } } },
+        { staticClass: "btn", attrs: { to: { name: "dialog" } } },
         [_vm._v("Open Dialog")]
-      )
+      ),
+      _vm._v(" "),
+      _c("router-view")
     ],
     1
   )
@@ -54846,22 +54821,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: 'home',
     component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
-    path: '/nested',
-    component: _components_EptyRouterView__WEBPACK_IMPORTED_MODULE_7__["default"],
+    path: '/hello',
+    name: 'hello',
+    component: _components_Hello_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     children: [{
-      path: 'hello',
-      name: 'nested.hello',
-      component: _components_Hello_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
-    }, {
       path: 'dialog',
-      name: 'nested.dialog',
-      components: {
-        "default": _components_Hello_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-        dialog: _components_DialogOne__WEBPACK_IMPORTED_MODULE_8__["default"]
-      },
-      meta: {
-        showhtmodal: false
-      }
+      name: 'dialog',
+      component: _components_DialogOne__WEBPACK_IMPORTED_MODULE_8__["default"]
     }]
   }, {
     path: "/howto",
@@ -54901,8 +54867,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\vueroutertest\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\vueroutertest\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\vueroutertest2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\vueroutertest2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
